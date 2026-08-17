@@ -1,19 +1,40 @@
 import { Link } from "react-router"
-import { assets } from "../assets/assets"
-import food from "../assets/food_14.png"
+import { FaTrash } from "react-icons/fa"
+import { assets, food_list } from "../assets/assets"
+//import food from "../assets/food_14.png"
+
+import cartIcon from "/cart_icon.png"
+import Card from "../components/card"
 
 const CartPage = () => {
-  const cartTotal = [
-    { id: 1, title: `Sub total`, price: 40 },
-    { id: 2, title: `Sheeping fee`, price: 5 },
-    { id: 3, title: `Total`, price: 45 }
-  ]
+  // const cartTotal = [
+  //   { id: 1, title: `Sub total`, price: 40 },
+  //   { id: 2, title: `Sheeping fee`, price: 5 },
+  //   { id: 3, title: `Total`, price: 45 }
+  // ]
 
-  const mmm = [1,2,3,4,5,6,7,8,9]
+  // const mmm = [1,2,3,4,5,6,7,8,9]
 
   return (
-    <main className="flex flex-col gap-20 px-4 py-10">
-      <section className="">
+    <main className="p-4 min-h-screen">
+      <section className="flex justify-between items-center pb-4">
+        <p className="text-lg font-bold">Cart {`(${0})`}</p>
+        <FaTrash className="text-xl" />
+      </section>
+      <section className="flex flex-col items-center justify-center gap-3 h-[60vh] border-y border-y-neutral-300">
+        <img src={cartIcon} alt="cart icon" className="w-12" />
+        <p className="font-bold">Your cart is empty</p>
+        <Link to={`/signup`} className="bg-orange-600 text-white rounded-full px-5 py-1">Login / Register</Link>
+      </section>
+      <section className="flex flex-col gap-5 py-5">
+        <p className="font-bold">More products</p>
+        <div className="flex flex-wrap justify-center gap-5">
+          {food_list.map(item => (
+            <Card key={item._id} item={item} large={true} />
+          ))}
+        </div>
+      </section>
+      {/* <section className="">
         <ul className="flex justify-between items-center py-2 font-bold border-b border-b-neutral-300">
           <li>Image</li>
           <li>Title</li>
@@ -50,7 +71,7 @@ const CartPage = () => {
           ))}
         </div>
         <Link to={`/checkout`} className="bg-orange-500 text-white rounded-xl px-5 py-2 self-start cursor-pointer hover:bg-orange-600">Proceed to checkout</Link>
-      </section>
+      </section> */}
     </main>
   )
 }

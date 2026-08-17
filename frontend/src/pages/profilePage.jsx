@@ -1,6 +1,11 @@
 import { Link } from "react-router"
+import Card from "../components/card"
+import { food_list } from "../assets/assets"
 
-const CheckoutPage = () => {
+import cartIcon from "/cart_icon.png"
+import { FaBusinessTime, FaClock, FaCog, FaEnvelope, FaFirstOrder, FaHistory, FaIdCard, FaImdb, FaInbox, FaJediOrder, FaMailchimp, FaRegClock, FaShoppingBag, FaUser, FaUserClock } from "react-icons/fa"
+
+const ProfilePage = () => {
   const cartTotal = [
     { id: 1, title: `Sub total`, price: 40 },
     { id: 2, title: `Sheeping fee`, price: 5 },
@@ -8,8 +13,47 @@ const CheckoutPage = () => {
   ]
 
   return (
-    <main className="flex flex-col gap-20 px-4 py-15">
-      <section className="flex flex-col gap-10">
+    <main className="p-4 min-h-screen">
+      <section className="flex justify-between items-center pb-4">
+        <div className="flex items-center gap-2">
+          <FaUser className="bg-orange-600 text-white text-3xl p-1 rounded-full" />
+          <p className="font-bold">{`User`}</p>
+        </div>
+        <FaCog className="text-xl" />
+      </section>
+      <section className="flex flex-col h-[60vh] py-5 border-y-2 border-y-neutral-300">
+        <div className="flex flex-col items-start justify-center gap-5 h-1/2">
+          <p className="text-2xl font-bold leading-tight">Welcome to <br />QuickTrade</p>
+          <Link to={`/signup`} className="bg-orange-600 text-white rounded-full px-5 py-1">Login / Register</Link>
+        </div>
+        <div className="bg-neutral-300 flex flex-col justify-between h-1/2">
+          <div className="flex items-center gap-3 p-4 bg-white">
+            <FaShoppingBag className="text-2xl" />
+            <p>Messages</p>
+          </div>
+          <div className="flex items-center gap-3 p-4 bg-white">
+            <FaEnvelope className="text-2xl" />
+            <p>Your orders</p>
+          </div>
+          <div className="flex items-center gap-3 p-4 bg-white">
+            <FaUserClock className="text-2xl" />
+            <p>Reviews</p>
+          </div>
+          <div className="flex items-center gap-3 p-4 bg-white">
+            <FaClock className="text-2xl" />
+            <p>History</p>
+          </div>
+        </div>
+      </section>
+      <section className="flex flex-col gap-5 py-5">
+        <p className="font-bold">More product</p>
+        <div className="flex flex-wrap justify-center gap-5">
+          {food_list.map(item => (
+            <Card key={item._id} item={item} large={true} />
+          ))}
+        </div>
+      </section>
+      {/* <section className="flex flex-col gap-10">
         <p className="text-xl font-bold">Delivery Information</p>
         <form className="flex flex-col gap-5">
           <div className="flex gap-5">
@@ -40,9 +84,9 @@ const CheckoutPage = () => {
           ))}
         </div>
         <Link to={`/payment`} className="bg-orange-500 text-white rounded-xl px-5 py-2 self-start cursor-pointer hover:bg-orange-600">Proceed to payment</Link>
-      </section>
+      </section> */}
     </main>
   )
 }
 
-export default CheckoutPage
+export default ProfilePage

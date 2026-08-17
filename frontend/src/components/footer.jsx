@@ -1,36 +1,23 @@
-import { assets } from "../assets/assets"
+import { FaCartPlus, FaHome, FaUser } from "react-icons/fa"
+import { NavLink } from "react-router"
 
 const Footer = () => {
+  const style = `flex flex-col gap-1 items-center`
+
   return (
-    <footer id="contact" className="bg-neutral-700 text-neutral-300 p-4 sm:px-20">
-      <div className="border-b border-b-neutral-300 flex flex-col gap-10 py-10 sm:flex-row">
-        <div className="flex flex-col gap-5 basis-[60%]">
-          <img src={assets.logo} alt="app logo" className="w-35" />
-          <p className="leading-tight">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta explicabo neque deleniti libero nobis veritatis officiis est! Facere asperiores, fugit veniam incidunt totam necessitatibus eligendi voluptates saepe impedit sequi. Nostrum.</p>
-          <div className="flex gap-3">
-            <img src={assets.facebook_icon} alt="facebook" className="w-9" />
-            <img src={assets.twitter_icon} alt="twitter" className="w-9" />
-            <img src={assets.linkedin_icon} alt="linkedin" className="w-9" />
-          </div>
-        </div>
-        <div className="basis-[20%]">
-          <p className="text-white text-lg font-bold mb-2">COMPANY</p>
-          <ul>
-            <li>Home</li>
-            <li>About us</li>
-            <li>Delivery</li>
-            <li>Privacy policy</li>
-          </ul>
-        </div>
-        <div className="basis-[20%]">
-          <p className="text-white text-lg font-bold mb-2">GET IN TOUCH</p>
-          <ul>
-            <li>+1-212-456-7890</li>
-            <li>contact@tomato.com</li>
-          </ul>
-        </div>
-      </div>
-      <p className="text-center mt-10">Copyright {new Date().getFullYear()} © Tomato - All Right Reserved</p>
+    <footer className="bg-white sticky bottom-0 w-full flex justify-between px-4 py-2 z-10">
+      <NavLink to={`/`} className={({ isActive }) => isActive ? `${style} text-orange-600` : style}>
+        <FaHome className="text-2xl" />
+        <p className="text-sm">Home</p>
+      </NavLink>
+      <NavLink to={`/cart`} className={({ isActive }) => isActive ? `${style} text-orange-600` : style}>
+        <FaCartPlus className="text-2xl" />
+        <p className="text-sm">Cart</p>
+      </NavLink>
+      <NavLink to={`/profile`} className={({ isActive }) => isActive ? `${style} text-orange-600` : style}>
+        <FaUser className="text-2xl" />
+        <p className="text-sm">Profile</p>
+      </NavLink>
     </footer>
   )
 }

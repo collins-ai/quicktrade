@@ -1,8 +1,10 @@
 import { useContext } from "react"
 import { appContext } from "../App"
 import { assets } from "../assets/assets"
+import { Link } from "react-router"
+import cartIcon from "/cart_icon.png"
 
-const Signup = () => {
+const SignupPage = () => {
   const { setOpen, signup, setSignup } = useContext(appContext)
 
   const closeForm = () => {
@@ -16,11 +18,17 @@ const Signup = () => {
   }
 
   return (
-    <div className="bg-neutral-800/30 w-screen h-screen absolute top-0 left-0 flex justify-center items-center">
+    <main className="bg-gradient-to-b from-orange-400 to-orange-200 w-screen h-screen flex flex-col gap-10 justify-center items-center">
+      <div className="flex gap-2 items-center">
+        <img src={cartIcon} alt="app logo" className="w-8" />
+        <span className="text-2xl font-bold">QuickTrade</span>
+      </div>
       <form noValidate onSubmit={submitForm} className="bg-white flex flex-col gap-5 p-5 rounded-2xl w-75 sm:w-100">
         <div className="flex justify-between items-center mb-2">
           <p className="text-neutral-800 text-2xl font-bold">{signup ? `Sign Up` : `Login`}</p>
-          <img onClick={closeForm} src={assets.cross_icon} alt="cross icon" className="cursor-pointer" />
+          <Link to={`/`}>
+            <img onClick={closeForm} src={assets.cross_icon} alt="cross icon" className="cursor-pointer" />
+          </Link>
         </div>
         {signup && <input type="text" name="" id="" placeholder="name" className="border border-neutral-300 outline-0 rounded-xl p-2" />}
         <input type="email" name="" id="" placeholder="email" className="border border-neutral-300 outline-0 rounded-xl p-2" />
@@ -29,8 +37,8 @@ const Signup = () => {
         {signup && <p>Already have an account? <span onClick={() => { setSignup(false) }} className="text-orange-400 cursor-pointer hover:text-orange-600">Login here</span></p>}
         {!signup && <p>Create a new account? <span onClick={() => { setSignup(true) }} className="text-orange-400 cursor-pointer hover:text-orange-600">Click here</span></p>}
       </form>
-    </div>
+    </main>
   )
 }
 
-export default Signup
+export default SignupPage

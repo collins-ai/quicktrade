@@ -1,35 +1,21 @@
-import { useContext } from "react"
-import { appContext } from "../App"
+import { FaBell, FaSearch } from "react-icons/fa"
 import { NavLink } from "react-router"
-import { Link } from "react-scroll"
-import { assets } from "../assets/assets"
-import Signup from "./signup"
+import cartIcon from "/cart_icon.png"
 
 const Header = () => {
-  const { open, setOpen } = useContext(appContext)
-
-  const openForm = () => {
-    setOpen(true)
-    document.body.classList.add(`overflow-hidden`)
-  }
-
   return (
-    <header className="bg-white flex justify-between items-center p-4 sticky top-0 z-10 sm:px-20">
-      <NavLink to={`/`}>
-        <img src={assets.logo} alt="app logo" className="w-30" />
-      </NavLink>
-      <ul className="hidden sm:flex gap-5">
-        <li><NavLink to={`/`} className={({ isActive }) => isActive ? "underline underline-offset-8" : "hover:text-orange-600"}>home</NavLink></li>
-        <li><Link to="menu" className="cursor-pointer hover:text-orange-600">menu</Link></li>
-        <li><Link to="contact" className="cursor-pointer hover:text-orange-600">contact us</Link></li>
-      </ul>
-      <div className="flex items-center gap-5">
-        <NavLink to={`/cart`}>
-          <img src={assets.basket_icon} alt="cart icon" className="w-6" />
+    <header className="bg-white flex flex-col gap-3 p-4 sticky top-0 z-10">
+      <div className="flex justify-between items-center">
+        <NavLink to={`/`} className={`flex gap-2 items-center fade`}>
+          <img src={cartIcon} alt="app logo" className="w-6" />
+          <span className="text-lg font-bold">QuickTrade</span>
         </NavLink>
-        <button onClick={openForm} type="button" className="border border-neutral-300 rounded-full px-5 py-1 cursor-pointer hover:bg-orange-600 hover:text-white">Sign up</button>
+        <FaBell className="text-2xl" />
       </div>
-      {open && <Signup />}
+      <div className="relative">
+        <FaSearch className="text-xl absolute top-2 right-4" />
+        <input type="search" name="search" id="search" placeholder="search here" className="border border-neutral-300 outline-0 rounded-xl p-2 w-full" />
+      </div>
     </header>
   )
 }
